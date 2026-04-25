@@ -22,10 +22,10 @@ Build a polished, playful educational web experience where players complete math
   - Home -> Game -> Results/Rewards -> Frog Customization.
 
 ### P1 - Should Have
-- 2 to 3 total math mini-games.
+- 1 to 2 total math mini-games.
 - Difficulty levels (easy/medium/hard).
 - Subject/game hub page with visual game cards.
-- 100% completion badge per game.
+- 100% completion cosmetic per each game.
 
 ### P2 - Stretch Goals
 - AI battle mode (timed competitive math + health system).
@@ -36,15 +36,15 @@ Build a polished, playful educational web experience where players complete math
 
 ### Game 1: Make 10 (MVP)
 - Prompt format: `__ + __ = 10`.
-- Player drags number tiles into two answer slots.
-- Immediate feedback after drop/submit.
+- Player drags blocks of certain size (block: 2) onto another block to get the answer the blocks combine to get the size of the new block and hpefully the answer.
+- Immediate feedback after blocks combine.
 - Session length: 10 rounds.
 - Scoring:
   - +1 per correct round.
   - Flies reward per correct round.
 - Perfect session (10/10):
   - 2x flies for that session.
-  - Cosmetic unlock (first perfect only).
+  - Cosmetic unlock after 5 perfect rounds.
 
 ### Reward Rules (Initial Values)
 - Base flies: `5` per correct answer.
@@ -55,7 +55,7 @@ Build a polished, playful educational web experience where players complete math
 - Avatar: 2D frog sprite.
 - Equipment slots: hat, glasses, shirt, accessory.
 - Closet/inventory panel shows unlocked items.
-- Drag item onto slot to equip.
+- Drag item onto slot frog avatar to equip drag item off to unequip.
 - Equipped and unlocked states persist in `localStorage`.
 
 ## 5) UX and Visual Direction
@@ -98,7 +98,7 @@ Persist in `localStorage` under one key, e.g. `amphibianAcademyState`:
 - Add basic routing strategy (single-page sections or multi-page HTML).
 
 ### Milestone 2 - Core Gameplay
-- Implement Make 10 drag/drop logic and scoring.
+- Implement Make 10 drag/drop/combine logic and scoring.
 - Add round loop (10 rounds) and result summary.
 
 ### Milestone 3 - Rewards + Avatar
