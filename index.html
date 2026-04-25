@@ -1,25 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amphibian Academy</title>
-    <link rel="Stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amphibian Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Bungee&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1 class="title">Amphibian Academy</h1>
-    <script src="script.js"></script>
-
-    <div>
-        <h2 class="subjects">Subjects</h2>
-
+  <div class="pond-lights" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="brand-wrap">
+      <p class="brand-kicker">BroncoHacks 2026</p>
+      <h1 class="brand">Amphibian Academy</h1>
     </div>
-
-    <div>
-        <h2 class="recent">Recently Played</h2>
-
+    <nav class="main-nav" aria-label="Main navigation">
+      <button class="nav-btn" data-view="home">Home</button>
+      <button class="nav-btn" data-view="math">Math Game</button>
+      <button class="nav-btn" data-view="frog">Frog Wardrobe</button>
+    </nav>
+    <div class="fly-bank" aria-live="polite">
+      <span class="fly-label">Flies</span>
+      <strong id="fliesCounter">0</strong>
     </div>
+  </header>
 
+  <main>
+    <section class="view" id="homeView" data-view="home">
+      <div class="hero-card reveal-up">
+        <p class="eyebrow">Learn. Play. Customize.</p>
+        <h2>Math mini-games in a frog world.</h2>
+        <p>
+          Solve rounds, earn flies, and deck out your frog with new gear.
+          Start with <strong>Make 10</strong> and build your streak.
+        </p>
+        <div class="hero-actions">
+          <button class="cta-btn" data-view="math">Play Make 10</button>
+          <button class="ghost-btn" data-view="frog">Customize Frog</button>
+        </div>
+      </div>
 
+      <div class="home-grid">
+        <article class="glass-card reveal-up delay-1">
+          <h3>Subjects</h3>
+          <p>More subjects can plug in later. Math is fully playable now.</p>
+          <button class="mini-btn" data-view="math">Open Math</button>
+        </article>
+        <article class="glass-card reveal-up delay-2">
+          <h3>Quick Access</h3>
+          <p>Jump directly into the current featured game.</p>
+          <button class="mini-btn" data-view="math">Make 10</button>
+        </article>
+        <article class="glass-card reveal-up delay-3">
+          <h3>About Us</h3>
+          <p>
+            Amphibian Academy is a playful learning project built for hackathon
+            judging on polish, learning value, and engagement.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="view hidden" id="mathView" data-view="math">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Math</p>
+          <h2>Make 10</h2>
+          <p>Drag one block onto another. If they combine to 10, you score.</p>
+        </div>
+        <div class="difficulty-wrap">
+          <label for="difficultySelect">Difficulty</label>
+          <select id="difficultySelect">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="game-grid">
+        <article class="glass-card status-card">
+          <h3>Session Status</h3>
+          <div class="status-list">
+            <p>Round: <strong id="roundCounter">0 / 10</strong></p>
+            <p>Score: <strong id="scoreCounter">0</strong></p>
+            <p>Perfect Sessions: <strong id="perfectCounter">0</strong></p>
+            <p>Best Score: <strong id="bestScoreCounter">0</strong></p>
+          </div>
+          <div class="game-actions">
+            <button id="startGameBtn" class="mini-btn">Start Session</button>
+            <button id="nextRoundBtn" class="mini-btn" disabled>Next Round</button>
+          </div>
+        </article>
+
+        <article class="glass-card play-card">
+          <h3>Equation</h3>
+          <p class="equation" id="equationDisplay">__ + __ = 10</p>
+          <p class="feedback" id="roundFeedback">Combine two blocks to begin.</p>
+          <div class="block-board" id="blockBoard" aria-label="Block board"></div>
+        </article>
+
+        <article class="glass-card reward-card">
+          <h3>Round Rewards</h3>
+          <p class="reward-text" id="sessionRewardPreview">Current Session Flies: 0</p>
+          <p class="reward-text" id="rewardHint">Perfect score = 2x flies + 50 bonus.</p>
+          <div class="progress-wrap" aria-label="Progress">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+          <p class="unlock-msg" id="unlockMessage">No new unlock yet.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="view hidden" id="frogView" data-view="frog">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Customization</p>
+          <h2>Frog Wardrobe</h2>
+          <p>Drag an unlocked item to the matching slot. Drag equipped items to closet to unequip.</p>
+        </div>
+      </div>
+
+      <div class="wardrobe-layout">
+        <article class="glass-card frog-stage-card">
+          <h3>Your Frog</h3>
+          <div class="frog-stage">
+            <div class="frog-avatar" aria-label="Frog avatar">
+              <div class="frog-eye eye-left"></div>
+              <div class="frog-eye eye-right"></div>
+              <div class="frog-face"></div>
+
+              <div class="slot slot-hat" data-slot="hat">
+                <span>Hat</span>
+              </div>
+              <div class="slot slot-glasses" data-slot="glasses">
+                <span>Glasses</span>
+              </div>
+              <div class="slot slot-shirt" data-slot="shirt">
+                <span>Shirt</span>
+              </div>
+              <div class="slot slot-accessory" data-slot="accessory">
+                <span>Accessory</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="glass-card closet-card">
+          <h3>Closet</h3>
+          <p class="closet-help">Unlocked items can be dragged onto your frog.</p>
+          <div id="closetDropZone" class="closet-grid" aria-label="Unlocked wardrobe items"></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
